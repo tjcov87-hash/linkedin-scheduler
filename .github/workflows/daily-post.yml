@@ -1,0 +1,14 @@
+name: Daily LinkedIn Post
+
+on:
+  schedule:
+    - cron: '0 20 * * *'  # 7am AEDT (UTC+11)
+  workflow_dispatch:  # allows manual trigger from GitHub
+
+jobs:
+  send-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger cron endpoint
+        run: |
+          curl -X GET "${{ secrets.VERCEL_APP_URL }}/api/cron"
