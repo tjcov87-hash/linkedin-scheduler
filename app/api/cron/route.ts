@@ -7,7 +7,7 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function GET() {
-  const industry = "logistics";
+  const industry = "Australian logistics";
 
   // Fetch latest news
   let headlines: string[] = [];
@@ -15,7 +15,7 @@ export async function GET() {
   try {
     const newsRes = await axios.get("https://newsapi.org/v2/everything", {
       params: {
-        q: industry,
+        q: "logistics Australia",
         language: "en",
         sortBy: "publishedAt",
         pageSize: 5,
@@ -45,7 +45,8 @@ Requirements:
 - End with a thought-provoking question to encourage engagement
 - Add 3-5 relevant hashtags at the end
 - Do NOT use emojis excessively, maximum 2
-- Write in first person as an industry professional`;
+- Write in first person as an Australian logistics industry professional
+- Where relevant, reference the Australian market, ports, supply chains or carriers`;
 
   const message = await anthropic.messages.create({
     model: "claude-haiku-4-5-20251001",
